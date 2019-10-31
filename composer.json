@@ -1,0 +1,21 @@
+{
+    "name": "mathsgod/gql-scalar-date",
+    "type": "library",
+    "require-dev": {
+        "webonyx/graphql-php": "^0.12.6",
+        "phpunit/phpunit": "^6.5"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Raymond Chong",
+            "email": "mathsgod@yahoo.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Scalar\\": "src"
+        }
+    }
+}

@@ -21,10 +21,10 @@ type Query{
             $name = $typeConfig['name'];
 
             if ($name === 'DateTime') {
-                $email = new Scalar\DateTime();
+                $scalar = new Scalar\DateTime();
 
-                $typeConfig["serialize"] = [$email, "serialize"];
-                $typeConfig["parseLiteral"] = [$email, "parseLiteral"];
+                $typeConfig["serialize"] = [$scalar, "serialize"];
+                $typeConfig["parseLiteral"] = [$scalar, "parseLiteral"];
             }
             return $typeConfig;
         };

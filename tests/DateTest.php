@@ -1,5 +1,4 @@
 <?
-
 declare(strict_types=1);
 error_reporting(E_ALL && ~E_WARNING);
 
@@ -20,12 +19,12 @@ type Query{
 ";
         $typeConfigDecorator = function ($typeConfig) {
             $name = $typeConfig['name'];
-
             if ($name === 'Date') {
-                $email = new Scalar\Date();
 
-                $typeConfig["serialize"] = [$email, "serialize"];
-                $typeConfig["parseLiteral"] = [$email, "parseLiteral"];
+
+                $scalar = new Scalar\Date();
+                $typeConfig["serialize"] = [$scalar, "serialize"];
+                $typeConfig["parseLiteral"] = [$scalar, "parseLiteral"];
             }
             return $typeConfig;
         };
@@ -34,22 +33,20 @@ type Query{
         //---
         $query = <<<gql
 query{
-    test(data:"20000102")
+    test(date:"20000102")
 }
 gql;
 
         $result = GraphQL::executeQuery($schema, $query);
 
         $result = $result->toArray();
-        print_r($result);
-        die();
         $this->assertArrayHasKey("errors", $result);
 
 
         //---
         $query = <<<gql
 query{
-    test(email:"2010-01-02")
+    test(date:"2010-01-02")
 }
 gql;
         $result = GraphQL::executeQuery($schema, $query);
